@@ -1,4 +1,4 @@
-package com.ajbose.learning;
+package com.ajbose.learning.stringmanipulation;
 
 /**
  * This program check if a string is just one edit away from the other string or not ?

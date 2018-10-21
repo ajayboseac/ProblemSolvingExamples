@@ -1,4 +1,4 @@
-package com.ajbose.learning;
+package com.ajbose.learning.stringmanipulation;
 
 import java.util.HashMap;
 import java.util.Iterator;
