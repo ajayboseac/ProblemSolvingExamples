@@ -23,6 +23,8 @@ public class CoinChangeProblem {
 
         combinations = calculateNumberOfCombinationsCorrectWay(amount, availableDenominations,3);
         System.out.println(combinations);
+
+        //TODO : Need to still add the dynamic programming way of solving the problem!
     }
 
     /**
