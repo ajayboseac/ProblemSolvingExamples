@@ -6,17 +6,18 @@ package com.ajbose.learning.stringmanipulation;
 public class IsOneEditAway {
 
     public static void main(String[] args) {
-        String s1 = "ajay";
-        String s2 = "ajy";
-
-        String s3 = "anju";
-        String s4 = "aju";
-
-        String s5 = "anju";
-        String s6 = "ajnu";
-        System.out.println(isOneEditAway(s1,s2));
-        System.out.println(isOneEditAway(s3,s4));
-        System.out.println(isOneEditAway(s5,s6));
+        Double aDouble = Double.valueOf(null);
+//        String s1 = "ajay";
+//        String s2 = "ajy";
+//
+//        String s3 = "anju";
+//        String s4 = "aju";
+//
+//        String s5 = "anju";
+//        String s6 = "ajnu";
+//        System.out.println(isOneEditAway(s1,s2));
+//        System.out.println(isOneEditAway(s3,s4));
+//        System.out.println(isOneEditAway(s5,s6));
     }
 
     private static boolean isOneEditAway(String s1,String s2){
