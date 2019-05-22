@@ -7,17 +7,17 @@ public class FindNthFromLast {
 
     public static void main(String[] args) {
         LinkedListNode<Integer> list = new LinkedListNode<>(10);
-        for(int i=0;i<10;i++){
+        for (int i = 0; i < 10; i++) {
             list.appendToTail(i);
         }
         System.out.println(list.toString());
-        System.out.println(findNthFromLast(list,4));
+        System.out.println(findNthFromLast(list, 4));
 
         list.appendToTail(10);
         list.appendToTail(11);
         list.appendToTail(11);
         System.out.println(list.toString());
-        System.out.println(findNthFromLast(list,4));
+        System.out.println(findNthFromLast(list, 4));
     }
 
     /**
@@ -35,10 +35,8 @@ public class FindNthFromLast {
         while (tempNode1.next != null) {
             tempNode1 = tempNode1.next;
             i++;
-            if (null == tempNode2) {
-                if (i == k) {
-                    tempNode2 = firstNode;
-                }
+            if (null == tempNode2 && i == k) {
+                tempNode2 = firstNode;
             } else {
                 tempNode2 = tempNode2.next;
             }
