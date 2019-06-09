@@ -13,7 +13,7 @@ public class CoinChangeProblem {
 
     public static void main(String[] args) {
         int[] availableDenominations = new int[]{1, 2, 3};
-        int amount = 4;
+        int amount = 10;
 
         //The wrong way.
         int combinations = calculateNumberOfCombinations(amount, availableDenominations);
@@ -22,6 +22,9 @@ public class CoinChangeProblem {
         //The correct way.
 
         combinations = calculateNumberOfCombinationsCorrectWay(amount, availableDenominations,3);
+        System.out.println(combinations);
+
+        combinations = calculateNumberOfCombinationsDP(amount, availableDenominations);
         System.out.println(combinations);
 
         //TODO : Need to still add the dynamic programming way of solving the problem!
@@ -72,6 +75,18 @@ public class CoinChangeProblem {
 
         return calculateNumberOfCombinationsCorrectWay(amount - availableDenominations[sizeOfAvailableDenominations - 1],
                 availableDenominations, sizeOfAvailableDenominations) + calculateNumberOfCombinationsCorrectWay(amount , availableDenominations, sizeOfAvailableDenominations-1);
+
+    }
+
+    private static int calculateNumberOfCombinationsDP(int amount, int[] availableDenominations){
+        int[] combinations = new int[amount+1];
+        combinations[0]= 1;
+        for(int i=0;i<availableDenominations.length;i++){
+            for(int j=availableDenominations[i];j<amount+1;j++){
+                combinations[j] += combinations[j-availableDenominations[i]];
+            }
+        }
+        return combinations[amount];
 
     }
 
