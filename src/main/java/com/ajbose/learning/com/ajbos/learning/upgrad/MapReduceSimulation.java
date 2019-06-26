@@ -40,13 +40,10 @@ public class MapReduceSimulation {
         reducer2.finish();
         reducer3.finish();
 
+        reducer1Future.get();
+        reducer2Future.get();
+        reducer3Future.get();
 
-
-
-
-
-        // Start two threads - > Which processes the files
-        //Start Three threads which are aggregator(s).
-        //Star Another Thread which is like a Master Aggregator
+        System.out.println("Everything done!!!");
     }
 }

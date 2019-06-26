@@ -21,14 +21,17 @@ public class Reducer implements Runnable{
 
     @Override
     public void run() {
-        while(run){
+        while(run || !queue.isEmpty()){
             try {
                 String element = queue.poll(10,TimeUnit.MILLISECONDS);
-                handleElement(element);
+                if(null!=element){
+                    handleElement(element);
+                }
             } catch (InterruptedException e) {
                 return;
             }
         }
+        System.out.println("Reducer Done!!!");
     }
 
     private void handleElement(String element) {
@@ -43,7 +46,7 @@ public class Reducer implements Runnable{
     }
 
     public void add(String element){
-        queue.add(element);
+        queue.offer(element);
     }
 
     public void finish(){

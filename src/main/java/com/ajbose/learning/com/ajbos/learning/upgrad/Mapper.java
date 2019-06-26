@@ -30,6 +30,7 @@ public class Mapper implements Runnable {
             e.printStackTrace();
         }
 
+        System.out.println("Mapper done!!");
     }
 
     private void addToReducer(String s) {
