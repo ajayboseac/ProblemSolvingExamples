@@ -45,5 +45,6 @@ public class MapReduceSimulation {
         reducer3Future.get();
 
         System.out.println("Everything done!!!");
+        executorService.shutdownNow();
     }
 }

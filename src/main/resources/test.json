@@ -1,0 +1,48 @@
+{
+  "ResponseTime": "20190701T093655.636 GMT",
+  "RequestTime": "20190701T093655.741 GMT",
+  "ChannelName": "HELP CENTER",
+  "ChannelID": "OUTBOUND",
+  "AccountNumber": "1925689946797227767",
+  "BNAListID": "BL-599040",
+  "BNAList": [
+    {
+      "BNADescription": "Customer has said on the Help Center that s/he is calling about payment that did not go through",
+      "BNAName": "Payment declined",
+      "IsOptOut": "false",
+      "BNAType": "Contact Reason",
+      "EchoIntentList": [
+        {
+          "SelfHelpPage": {
+            "OKMArticleName": "Why was my payment declined? Troubleshooting tips ",
+            "OKMID": "FAQ3039"
+          },
+          "IntentID": "EI-1011",
+          "IntentName": "Payment declined",
+          "IsIVR": true,
+          "IsCompass": true,
+          "IsSelfHelp": true,
+          "IntentDescription": "Customer has said on the Help Center that s/he is calling about payment that did not go through"
+        }
+      ],
+      "BNAId": "BNA-1011",
+      "StrategyId": "ST-1001",
+      "StrategyName": "US CII",
+      "StrategyPriority": 2,
+      "DynamicPriority": 55,
+      "ImagePath": "pp_wallet",
+      "BNAPriority": 1,
+      "SimulationStatus": "Online",
+      "JourneyId": "2a9a0432-9a48-4d83-9a04-329a485d8314",
+      "IsCIIBNA": true,
+      "CIIList": [
+        {
+          "channelName": "HELP_CENTER",
+          "type": "TOPIC",
+          "id": "PAYDEC001",
+          "description": "Login problem"
+        }
+      ]
+    }
+  ]
+}
