@@ -5,11 +5,11 @@ import java.util.Scanner;
 
 public class FFXFileReader {
     String fileName;
-    FFXBuilder ffxBuilder;
+    FFXRepositoryBuilder ffxRepositoryBuilder;
 
-    public FFXFileReader(String fileName, FFXBuilder ffxBuilder) {
+    public FFXFileReader(String fileName, FFXRepositoryBuilder ffxRepositoryBuilder) {
         this.fileName = fileName;
-        this.ffxBuilder = ffxBuilder;
+        this.ffxRepositoryBuilder = ffxRepositoryBuilder;
     }
 
 
@@ -22,14 +22,14 @@ public class FFXFileReader {
             //This is the list of currencies
             if(i==0){
                 for(int j=1;j<split.length;j++){
-                    ffxBuilder.addCurrency(j-1,split[j]);
+                    ffxRepositoryBuilder.addCurrency(j-1,split[j]);
                 }
                 i++;
                 continue;
             }
 
             for(int j=1;j<split.length;j++){
-                ffxBuilder.addFFX(i-1,j-1,split[j]);
+                ffxRepositoryBuilder.addFFX(i-1,j-1,split[j]);
             }
             i++;
         }

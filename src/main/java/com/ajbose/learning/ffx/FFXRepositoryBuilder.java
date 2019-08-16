@@ -2,22 +2,33 @@ package com.ajbose.learning.ffx;
 
 import java.util.*;
 
-public class FFXBuilder {
+public class FFXRepositoryBuilder {
 
     List<String> currencyList = new ArrayList<>(10);
     FFXRepository ffxRepository;
     Map<String,List<String>> dependencyToDependentMap = new HashMap<String,List<String>>(10);
     Map<String,List<String>> dependentToDependenciesMap = new HashMap<String,List<String>>(10);
 
-    FFXBuilder(FFXRepository ffxRepository) {
+    FFXRepositoryBuilder(FFXRepository ffxRepository) {
         this.ffxRepository = ffxRepository;
     }
 
 
+    /**
+     * Adds the currencies and their indexes.
+     * @param index - Index of the currency
+     * @param currency - The Currency code.
+     */
     public void addCurrency(int index, String currency) {
         currencyList.add(index, currency);
     }
 
+    /**
+     * Adds the FFX rates.
+     * @param sourceCurrencyIndex
+     * @param targetCurrencyIndex
+     * @param conversionRate
+     */
     public void addFFX(int sourceCurrencyIndex, int targetCurrencyIndex, String conversionRate) {
         String sourceCurrency = currencyList.get(sourceCurrencyIndex);
         String targetCurrency = currencyList.get(targetCurrencyIndex);
@@ -34,7 +45,7 @@ public class FFXBuilder {
         //If not resolved , Then add to dependency list
 
         String intermediateCurrency = conversionRate;
-        conversionRateFloat = getConversionRateRecursively(sourceCurrency, targetCurrency,intermediateCurrency);
+        conversionRateFloat = getConversionRateFromIntermediateCurrency(sourceCurrency, targetCurrency,intermediateCurrency);
         if(conversionRateFloat !=-1){
             ffxRepository.add(sourceCurrency,targetCurrency,conversionRateFloat);
             resolveDependencies(sourceCurrency,targetCurrency);
@@ -63,7 +74,7 @@ public class FFXBuilder {
             }
             if(dependencies==null || dependencies.isEmpty()) {
                 dependentToDependenciesMap.remove(dependentSourceCurrency + "_" + dependentTargetCurrency);
-                float conversionRate = getConversionRateRecursively(dependentSourceCurrency, dependentTargetCurrency, intermediateCurrency);
+                float conversionRate = getConversionRateFromIntermediateCurrency(dependentSourceCurrency, dependentTargetCurrency, intermediateCurrency);
                 ffxRepository.add(dependentSourceCurrency, dependentTargetCurrency, conversionRate);
                 resolveDependencies(dependentSourceCurrency, dependentTargetCurrency);
             }
@@ -71,7 +82,7 @@ public class FFXBuilder {
         dependentToDependenciesMap.remove(key);
     }
 
-    private float getConversionRateRecursively(String sourceCurrency,String targetCurrency, String intermediateCurrency) {
+    private float getConversionRateFromIntermediateCurrency(String sourceCurrency, String targetCurrency, String intermediateCurrency) {
         if(targetCurrency.equals(intermediateCurrency )|| sourceCurrency.equals(intermediateCurrency)){
             throw new RuntimeException("Cyclic Dependency in tha mapping: "+ sourceCurrency +"-->"+targetCurrency);
         }
