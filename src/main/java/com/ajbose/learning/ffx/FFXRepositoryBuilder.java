@@ -1,5 +1,7 @@
 package com.ajbose.learning.ffx;
 
+import sun.misc.Cache;
+
 import java.util.*;
 
 public class FFXRepositoryBuilder {
@@ -41,6 +43,12 @@ public class FFXRepositoryBuilder {
         } catch (Throwable e) {
             //This is expected.
         }
+
+        ArrayList<String> strings = new ArrayList<>();
+        strings.add("1");
+//        strings.c
+//        strings.stream().forEach(it ->{this.ffxRepository});
+
         //Check recursively for resolving all dependencies
         //If not resolved , Then add to dependency list
 
@@ -56,14 +64,23 @@ public class FFXRepositoryBuilder {
     private void resolveDependencies(String sourceCurrency, String targetCurrency) {
         String key = sourceCurrency + "_" + targetCurrency;
         List<String> dependents = dependentToDependenciesMap.get(key);
+        Optional<String> first = new ArrayList<String>(10).stream().findFirst();
         if(null == dependents || dependents.isEmpty()){
             return;
         }
         for(String dependent: dependents){
-            String dependentSourceCurrency = dependent.split("_")[0];
-            String dependentTargetCurrency = dependent.split("_")[1];
-            String intermediateCurrency = dependent.split("_")[2];
-            List<String> dependencies = dependentToDependenciesMap.get(dependentSourceCurrency + "_" + dependentTargetCurrency);
+            String dependentSourceCurrency = null;
+            String dependentTargetCurrency = null;
+            String intermediateCurrency = null;
+            List<String> dependencies = null;
+            try {
+                dependentSourceCurrency = dependent.split("_")[0];
+                dependentTargetCurrency = dependent.split("_")[1];
+                intermediateCurrency = dependent.split("_")[2];
+                dependencies = dependentToDependenciesMap.get(dependentSourceCurrency + "_" + dependentTargetCurrency);
+            } catch (ClassCastException|NullPointerException e) {
+                e.getClass();
+            }
             if(dependencies !=null ){
                 Iterator<String> iterator = dependencies.iterator();
                 while(iterator.hasNext()){
